@@ -3,7 +3,7 @@ import type AddItemProps from "../types/addItemProps";
 export default function AddItem({
   newItem,
   setNewItem,
-  setItems,
+  handleAdd,
 }: AddItemProps) {
   return (
     <div className='bg-mist-900 rounded-2xl flex flex-col justify-center items-center p-4 m-4 mt-0'>
@@ -35,16 +35,7 @@ export default function AddItem({
           if (!newItem.title) {
             return;
           } else {
-            setItems((prev) => [
-              ...prev,
-              { ...newItem, id: crypto.randomUUID() },
-            ]);
-            setNewItem({
-              id: "",
-              title: "",
-              description: "",
-              completed: false,
-            });
+            handleAdd(newItem);
           }
         }}
       >
