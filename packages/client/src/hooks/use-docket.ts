@@ -1,4 +1,4 @@
-import { addItem, getItems } from "../api/docket";
+import { addItem, deleteItem, getItems } from "../api/docket";
 
 function useDocket(setItems, setNewItem) {
   function handleAdd(newItem) {
@@ -14,7 +14,14 @@ function useDocket(setItems, setNewItem) {
       });
     });
   }
-  return handleAdd;
+  function handleRemove(id) {
+    deleteItem(id).then(() => {
+      getItems().then((res) => {
+        setItems(res.data);
+      });
+    });
+  }
+  return { handleAdd, handleRemove };
 }
 
 export default useDocket;
