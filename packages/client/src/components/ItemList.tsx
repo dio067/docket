@@ -1,4 +1,4 @@
-export default function ItemList({ items, setItems }) {
+export default function ItemList({ items, handleRemove }) {
   const renderedItems = items.map(({ id, title, description }) => {
     return (
       <div
@@ -13,7 +13,7 @@ export default function ItemList({ items, setItems }) {
         <div className='flex flex-col'>
           <button
             onClick={() => {
-              setItems(items.filter((item) => item.id !== id));
+              handleRemove(id);
             }}
             className={`text-white bg-[#1a1a1a] rounded-2xl cursor-pointer m-0.5 h-10 w-20 hover:bg-green-700 transition-colors duration-200 `}
           >
@@ -21,7 +21,7 @@ export default function ItemList({ items, setItems }) {
           </button>
           <button
             onClick={() => {
-              setItems(items.filter((item) => item.id !== id));
+              handleRemove(id);
             }}
             className={`text-white bg-[#1a1a1a] rounded-2xl cursor-pointer m-0.5 mt-2 h-10 w-20 hover:bg-red-700 transition-colors duration-200 `}
           >
