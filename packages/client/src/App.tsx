@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useDocket from "./hooks/use-docket";
 import ItemList from "./components/ItemList";
 import AddItem from "./components/AddItem";
 import type item from "./types/item";
@@ -14,6 +15,8 @@ export default function App() {
     completed: false,
   });
 
+  const handleAdd = useDocket(setItems, setNewItem);
+
   useEffect(() => {
     getItems()
       .then((res) => {
@@ -26,7 +29,12 @@ export default function App() {
   return (
     <div className='bg-[#0f0f0f] w-full min-h-screen m-0 p-0'>
       <Header />
-      <AddItem newItem={newItem} setNewItem={setNewItem} setItems={setItems} />
+      <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        setItems={setItems}
+        handleAdd={handleAdd}
+      />
       <ItemList items={items} setItems={setItems} />
     </div>
   );
