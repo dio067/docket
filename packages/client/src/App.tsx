@@ -15,7 +15,7 @@ export default function App() {
     completed: false,
   });
 
-  const handleAdd = useDocket(setItems, setNewItem);
+  const { handleAdd, handleRemove } = useDocket(setItems, setNewItem);
 
   useEffect(() => {
     getItems()
@@ -35,7 +35,7 @@ export default function App() {
         setItems={setItems}
         handleAdd={handleAdd}
       />
-      <ItemList items={items} setItems={setItems} />
+      <ItemList items={items} handleRemove={handleRemove} />
     </div>
   );
 }
