@@ -6,7 +6,6 @@ function useDocket(setItems, setNewItem) {
       getItems().then((res) => {
         setItems(res.data);
         setNewItem({
-          id: "",
           title: "",
           description: "",
           completed: false,
