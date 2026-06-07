@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   return (
@@ -30,16 +32,21 @@ export default function Login() {
         </div>
         <button
           onClick={() => {
-            login(username, password).then((res) => {
-              localStorage.setItem("access_token", res.data.access);
-              localStorage.setItem("refresh_token", res.data.refresh);
-              navigate("/");
-            });
+            login(username, password)
+              .then((res) => {
+                localStorage.setItem("access_token", res.data.access);
+                localStorage.setItem("refresh_token", res.data.refresh);
+                navigate("/");
+              })
+              .catch(() => {
+                setError(true);
+              });
           }}
           className='rounded-3xl m-4 px-5 py-2 bg-violet-500 text-white font-bold cursor-pointer hover:bg-violet-800 hover:-translate-y-1 transition-all'
         >
           Login
         </button>
+        {error ? <p className='text-red-300'>Wrong Credientials</p> : ""}
       </div>
     </div>
   );
