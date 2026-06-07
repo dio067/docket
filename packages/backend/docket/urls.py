@@ -4,7 +4,7 @@ from .views import DocketView
 
 router = DefaultRouter()
 
-router.register('docket', DocketView)
+router.register('docket', DocketView, basename='docket')
 
 urlpatterns = [
     path('', include(router.urls))
