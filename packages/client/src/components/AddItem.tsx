@@ -30,7 +30,7 @@ export default function AddItem({
         </div>
       </div>
       <button
-        className='bg-violet-500 text-white rounded-3xl w-20 h-10 cursor-pointer'
+        className='bg-violet-500 hover:bg-violet-800 text-white rounded-3xl w-20 h-10 cursor-pointer transition-all'
         onClick={() => {
           if (!newItem.title) {
             return;
